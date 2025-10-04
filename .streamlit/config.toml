@@ -1,0 +1,7 @@
+[theme]
+base="dark"
+primaryColor="#00E5FF"           # Neon Cyan highlight
+backgroundColor="#0A0F24"        # Deep navy background
+secondaryBackgroundColor="#1A2238" # Lighter navy for cards
+textColor="#FFFFFF"              # Pure white text
+font="serif"

@@ -4,4 +4,4 @@ numpy
 scikit-learn
 statsmodels
 matplotlib
-pmdarima
+pmdarima==1.8.5

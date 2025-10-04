@@ -4,8 +4,8 @@ import streamlit as st
 import numpy as np
 from sklearn.linear_model import LinearRegression
 import matplotlib.pyplot as plt
-#import statsmodels.api as sm
-import pmdarima as pm
+import statsmodels.api as sm
+#import pmdarima as pm
 
 
 # for loading data
@@ -63,12 +63,12 @@ if selectedItem != "-- Choose Here --":
     elif modeltype.startswith("ARIMA"):
         try:
             # Fit ARIMA model (p,d,q) = (2,1,2) is use for a common start
-            #model = sm.tsa.ARIMA(y, order=(2,1,2))
-            model = pm.auto_arima(y, seasonal=False, stepwise=True, suppress_warnings=True)
-            #model_fit = model.fit()
+            model = sm.tsa.ARIMA(y, order=(2,1,2))
+            #model = pm.auto_arima(y, seasonal=False, stepwise=True, suppress_warnings=True)
+            model_fit = model.fit()
 
             # Forecast for next N days
-            forecast = model.predict(n_periods=futureDays)
+            forecast = model_fit.forecast(steps=futureDays)
 
             # --- Plot ARIMA Forecast ---
             fig, ax = plt.subplots()

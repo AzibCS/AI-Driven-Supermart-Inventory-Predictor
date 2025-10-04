@@ -57,8 +57,11 @@ if selectedItem != "-- Choose Here --":
         ax.set_title(f"Linear Regression Demand Forecast of {selectedItem}")
         ax.legend()
         st.pyplot(fig)
-
-        st.success(f"📦 Recommended Stock of {selectedItem} for next {futureDays} Days: {int(forecast.sum())} Units.")
+        total = int(forecast.sum())
+        if (total <= 0):
+            st.success(f"📦 Recommended Stock of {selectedItem} for next {futureDays} Days: No more Product is in Demand. Dont buy it")
+        else:
+            st.success(f"📦 Recommended Stock of {selectedItem} for next {futureDays} Days: {total} Units.")
 
     elif modeltype.startswith("ARIMA"):
         try:
@@ -77,8 +80,11 @@ if selectedItem != "-- Choose Here --":
             ax.set_title(f"ARIMA Demand Forecast for {selectedItem}")
             ax.legend()
             st.pyplot(fig)
-
-            st.success(f"📦 Recommended stock of {selectedItem} for next {futureDays} days: {int(forecast.sum())} units")
+            total = int(forecast.sum())
+            if(total <= 0):
+                st.success(f"📦 Recommended Stock of {selectedItem} for next {futureDays} Days: No more Product is in Demand. Dont buy it")
+            else:
+                st.success(f"📦 Recommended stock of {selectedItem} for next {futureDays} days: {total} units")
         except Exception as e:
             st.error(f"ARIMA model failed: {e}")
     else:
